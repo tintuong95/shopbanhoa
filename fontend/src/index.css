@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    @font-face {
+        font-style: 18px;
+        font-weight: 100 900;
+    }
+}
+
+.ant-pagination-options {
+    display: none !important;
+}
