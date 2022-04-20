@@ -38,8 +38,11 @@ function Products() {
     const { id } = req.params;
 
     const result = await productService.getProductsById(id);
+   
+   
     if (result) {
-      res.status(200).send(result);
+      res.status(200).json({result});
+      
     } else {
       res.status(404).send(" @@!Error");
     }

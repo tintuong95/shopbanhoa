@@ -1,8 +1,30 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
+
+import { useFormik } from "formik";
+import { history } from "../libs/history/history.js";
+import { signInUser } from "../services/loginService.js";
 export default function Signin() {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const formik = useFormik({
+    initialValues: {},
+  });
+
+  const onFinish = async() => {
+    try{
+      const  {data,status}=await signInUser(formik.values)
+      if(status==200){
+        localStorage.setItem("accessToken",data.accessToken)
+        history.push("/")
+      }else{
+        console.log("Thất bại")
+      }
+     
+    }catch(err){
+      console.log("Thất bại")
+    }
+    
+    
+    
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -26,7 +48,7 @@ export default function Signin() {
           name="username"
           rules={[{ required: true, message: "Please input your username!" }]}
         >
-          <Input />
+          <Input onChange={formik.handleChange} name="username" />
         </Form.Item>
 
         <Form.Item
@@ -34,15 +56,7 @@ export default function Signin() {
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
-        >
-          <Checkbox>Remember me</Checkbox>
+          <Input.Password onChange={formik.handleChange} name="password" />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

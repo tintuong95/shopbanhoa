@@ -72,7 +72,7 @@ function ProductService() {
   };
   /*---------*/
   this.getAllProductByTypeOffsetLimit = async (category, offset, limit,search) => {
-    console.log(category, offset, limit,search)
+ 
     let obj = {};
     if(category==undefined && search==undefined){
       obj = {

@@ -1,8 +1,27 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
+import { useFormik } from "formik";
+import { signUpUser } from "../services/loginService.js";
+import { history } from "../libs/history/history.js";
 export default function Signup() {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+
+  const formik=useFormik({
+    initialValues: {},
+  })
+
+  const onFinish = async(values) => {
+    try{
+      const  {data,status}=await signUpUser(formik.values)
+      if(status==200){
+        localStorage.setItem("accessToken",data.accessToken)
+        history.push("/")
+      }else{
+        console.log("Thất bại")
+      }
+     
+    }catch(err){
+      console.log("Thất bại")
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -24,9 +43,10 @@ export default function Signup() {
         <Form.Item
           label="Username"
           name="username"
+          
           rules={[{ required: true, message: "Please input your username!" }]}
         >
-          <Input />
+          <Input   name="username" onChange={formik.handleChange} />
         </Form.Item>
 
         <Form.Item
@@ -34,14 +54,14 @@ export default function Signup() {
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input.Password />
+          <Input.Password name="password" onChange={formik.handleChange}/>
         </Form.Item>
         <Form.Item
           label="RePassword"
           name="rePassword"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input.Password />
+          <Input.Password  />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

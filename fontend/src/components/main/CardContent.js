@@ -17,13 +17,14 @@ const Cardcontent = (props) => {
       style={{ width: "100%" }}
       cover={<img alt="example" src={images} />}
       actions={[
-        <Button type="" danger onClick={()=>{
+        <Button type="link" danger  onClick={()=>{
+         
           dispatch({
             type:"ADD_PRODUCT_CARD",
             payload:props
           })
         }}>Thêm vào giỏ</Button>,
-        <Button  type="primary " ghost style={{width:120}}>
+        <Button  type="link "  style={{width:120}}>
           <NavLink to={`/card/${id}`}>Chi tiết</NavLink>
         </Button>,
       ]}

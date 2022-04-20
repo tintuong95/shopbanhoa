@@ -17,11 +17,12 @@ export default function Cart() {
       renderItem={value => (
         <List.Item className='w-full'>
           <Row className='w-full'>
-            <Col span={12}>{value.item.name}</Col>
-            <Col span={10}> <Tag color="green">{parseInt(value.item.price).toLocaleString()}</Tag> </Col>
+            <Col span={8}>{value.item.name}</Col>
+            <Col span={7}> <Tag color="red">{parseInt(value.quality).toLocaleString()}</Tag> </Col>
+            <Col span={7}> <Tag color="red">{parseInt(value.item.price).toLocaleString()}</Tag> </Col>
             <Col  span={2}>
                 <Button type="" onClick={()=>{
-                    console.log("dsd")
+                  
                     dispatch({
                         type:"REMOVE_PRODUCT_CART",
                         payload:value.item.name

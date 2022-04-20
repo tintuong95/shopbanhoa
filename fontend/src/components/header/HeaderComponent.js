@@ -17,7 +17,7 @@ const {listCart}=useSelector(state=>state.cartReducer)
       <div className="col-span-3 flex justify-end ">
         <Button
         className="mr-6" 
-          size="large"
+          
           ghost type="primary"
           onClick={() => {
             dispatch({
@@ -40,21 +40,21 @@ const {listCart}=useSelector(state=>state.cartReducer)
       
         <Button onClick={()=>{
           history.push("/cart")
-        }} className="mr-6"  size="large" ghost type="primary">
+        }} className="mr-6"   ghost type="primary">
        
           Giỏ hàng ({listCart.length})
          
         </Button>
     
-        <Button className="mr-6" size="large" ghost   type="primary">
+        <Button className="mr-6"  ghost   type="primary">
           Hỗ trợ
         </Button>
-        <Button  className="mr-6" size="large" ghost  type="primary">
+        <Button  className="mr-6"  ghost  type="primary">
           Địa chỉ
         </Button>
         <AutoComplete
           style={{ width: 200 }}
-          size="large"
+          
           placeholder="Nhập hoa cần tìm.."
           onChange={(e) => {
             if(e!=""){

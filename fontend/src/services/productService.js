@@ -13,6 +13,7 @@ export const getAllProduct=(category,offset,limit,name)=>{
     return  Axios({
         method:"GET",
         url,
+        
     })
 
 
@@ -31,6 +32,7 @@ export const getSizeProduct=(category,name)=>{
     return  Axios({
         method:"GET",
         url,
+       
     })
 
 
@@ -47,10 +49,37 @@ export const getAllProductType=(id,offset,limit)=>{
 }
 
 
-export const getProductById=(id)=>{
-    return Axios({
+export const getProductById= async (id)=>{
+    let res=await Axios({
         method:"GET",
         url:`http://localhost:8000/api/products/${id}`
     })
+
+    return await res
 }
+
+export const removeProductById=async (id)=>{
+    let res =await Axios({
+        method:"DELETE",
+        url:`http://localhost:8000/api/products/${id}`
+    })
+}
+
+export const updateProductById=async (id,data)=>{
+    let res =await Axios({
+        method:"PUT",
+        url:`http://localhost:8000/api/products/${id}`
+    })
+}
+
+
+export const createProductById=async (data)=>{
+    console.log("dsafdsa",data)
+    let res =await Axios({
+        method:"POST",
+        url:`http://localhost:8000/api/products`,
+        data:data,
+    })
+}
+
 
